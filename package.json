@@ -1,0 +1,25 @@
+{
+
+  "$schema": "https://json.schemastore.org/package.json",
+  
+  
+  "name": "payswift-vtu",
+  "version": "1.0.0",
+  "description": "Complete VTU Platform for Nigerian Telecommunications & Utility Payments",
+  "scripts": {
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
