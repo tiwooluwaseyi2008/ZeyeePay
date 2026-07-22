@@ -1,0 +1,279 @@
+/* ==========================================
+   HAMBURGER BUTTON (Mobile Only)
+   ========================================== */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1001;
+  background: #0066cc;
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-hamburger {
+  background: #333;
+}
+
+/* ==========================================
+   SIDEBAR OVERLAY (Mobile)
+   ========================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
+}
+
+/* ==========================================
+   SIDEBAR CLOSE BUTTON (Mobile)
+   ========================================== */
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   SIDEBAR BASE STYLES
+   ========================================== */
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+
+.user-sidebar {
+  background-color: #0066cc;
+  color: white;
+}
+
+.admin-sidebar {
+  background-color: #1a1a2e;
+  color: white;
+}
+
+/* User Info */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-avatar {
+  width: 45px;
+  height: 45px;
+  background-color: #ffd700;
+  color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sidebar-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.sidebar-email {
+  margin: 2px 0 0;
+  font-size: 12px;
+  opacity: 0.8;
+  word-break: break-word;
+}
+
+/* Admin Logo */
+.admin-logo {
+  font-size: 20px;
+  margin: 0 0 25px 0;
+  color: white;
+}
+
+.admin-logo span {
+  color: #ffd700;
+}
+
+/* Menu */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar-item.active {
+  background: rgba(255,255,255,0.2);
+  font-weight: 600;
+}
+
+/* Logout */
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.sidebar-logout:hover {
+  background-color: #c82333;
+}
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.sidebar-logout:hover {
+  background-color: #c82333;
+}
+
+/* ==========================================
+   MOBILE STYLES (max-width: 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebar-close {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+    padding-top: 15px;
+    padding-bottom: 20px;
+    z-index: 999;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Make menu scrollable */
+  .sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+
+  /* Ensure logout is visible */
+  .sidebar-logout {
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Push main content to make room for hamburger */
+  .dashboard-main,
+  .buydata-main,
+  [style*="flex: 1"] {
+    padding-top: 60px !important;
+  }
+  
+  /* User info in mobile */
+  .sidebar-user {
+    flex-shrink: 0;
+  }
+  
+  /* Admin logo in mobile */
+  .admin-logo {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================
+   DESKTOP - Always show sidebar
+   ========================================== */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0) !important;
+  }
+}
