@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserSidebar from '../../components/UserSidebar';
-import axios from 'axios';
+import api from '../../api/axios';
 import toast from 'react-hot-toast';
 
 const TransactionHistory = () => {
@@ -14,10 +14,7 @@ const TransactionHistory = () => {
 
   const fetchTransactions = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/transactions', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const res = await api.get('/api/transactions');
       setTransactions(res.data.data || []);
     } catch (error) {
       toast.error('Failed to load transactions');

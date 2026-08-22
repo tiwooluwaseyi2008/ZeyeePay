@@ -90,7 +90,7 @@ const AutoLogoutHandler = () => {
       // Use sendBeacon for reliable logout on tab close
       const token = localStorage.getItem('token');
       if (token && navigator.sendBeacon) {
-        const logoutUrl = `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/logout`;
+        const logoutUrl = `${process.env.REACT_APP_API_URL || window.location.origin}/api/auth/logout`;
         navigator.sendBeacon(logoutUrl, JSON.stringify({}));
       }
       // Clear storage

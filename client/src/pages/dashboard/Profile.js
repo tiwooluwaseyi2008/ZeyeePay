@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserSidebar from '../../components/UserSidebar';
 import { FaUser, FaEnvelope, FaPhone, FaSave } from 'react-icons/fa';
-import axios from 'axios';
+import api from '../../api/axios';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
@@ -35,10 +35,7 @@ const Profile = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.put('http://localhost:5000/api/users/profile', formData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const res = await api.put('/api/users/profile', formData);
       localStorage.setItem('user', JSON.stringify(res.data.data));
       setUser(res.data.data);
       setEditing(false);
@@ -57,10 +54,7 @@ const Profile = () => {
     }
     setLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/users/change-password', passwordData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await api.put('/api/users/change-password', passwordData);
       toast.success('Password changed!');
       setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
     } catch (error) {
