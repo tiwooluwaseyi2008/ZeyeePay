@@ -6,14 +6,14 @@ const ServicePrice = require('../models/ServicePrice');
 
 const seedAll = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/payswift_vtu';
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/zeyeesub';
     await mongoose.connect(mongoURI);
     console.log('Connected to MongoDB');
 
     // ==========================================
     // 1. CREATE ADMIN USER
     // ==========================================
-    const existingAdmin = await User.findOne({ email: 'admin@payswift.com' });
+    const existingAdmin = await User.findOne({ email: 'admin@zeyeesub.com' });
     
     if (!existingAdmin) {
       const salt = await bcrypt.genSalt(10);
@@ -22,7 +22,7 @@ const seedAll = async () => {
       await User.create({
         firstName: 'Admin',
         lastName: 'User',
-        email: 'admin@payswift.com',
+        email: 'admin@zeyeesub.com',
         phone: '08105002814',
         password: hashedPassword,
         walletBalance: 1000000,
@@ -30,7 +30,7 @@ const seedAll = async () => {
         isEmailVerified: true,
         isActive: true
       });
-      console.log('✅ Admin created: admin@payswift.com / admin123');
+      console.log('✅ Admin created: admin@zeyeesub.com / admin123');
     } else {
       console.log('✅ Admin already exists');
     }
@@ -193,7 +193,7 @@ const seedAll = async () => {
     console.log(`⚡ Electricity:    ${counts.electricity}`);
     console.log(`📦 Total Services: ${services.length}`);
     console.log('========================================');
-    console.log('👤 Admin: admin@payswift.com / admin123');
+    console.log('👤 Admin: admin@zeyeesub.com / admin123');
     console.log('========================================\n');
 
     process.exit(0);

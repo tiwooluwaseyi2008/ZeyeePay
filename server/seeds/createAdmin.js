@@ -19,15 +19,15 @@ const User = mongoose.model('User', userSchema);
 
 const createAdmin = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/payswift_vtu');
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zeyeesub');
         console.log('Connected to MongoDB');
 
         // Check if admin already exists
-        const existingAdmin = await User.findOne({ email: 'admin@payswift.com' });
+        const existingAdmin = await User.findOne({ email: 'admin@zeyeesub.com' });
         
         if (existingAdmin) {
             console.log('Admin already exists!');
-            console.log('Email: admin@payswift.com');
+            console.log('Email: admin@zeyeesub.com');
             console.log('Password: admin123');
             process.exit(0);
         }
@@ -39,7 +39,7 @@ const createAdmin = async () => {
         const admin = await User.create({
             firstName: 'Admin',
             lastName: 'User',
-            email: 'admin@payswift.com',
+            email: 'admin@zeyeesub.com',
             phone: '08105002842',
             password: hashedPassword,
             walletBalance: 0,
@@ -48,7 +48,7 @@ const createAdmin = async () => {
         });
 
         console.log('Admin user created successfully!');
-        console.log('Email: admin@payswift.com');
+        console.log('Email: admin@zeyeesub.com');
         console.log('Password: admin123');
         
     } catch (error) {

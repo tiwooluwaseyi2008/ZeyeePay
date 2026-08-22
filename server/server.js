@@ -150,7 +150,7 @@ app.use('/api/admin', adminRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
-    message: 'PaySwift VTU API is running',
+    message: 'ZeyeeSub VTU API is running',
     version: '1.0.0',
     environment: process.env.NODE_ENV || 'development',
     uptime: process.uptime(),
@@ -244,7 +244,7 @@ const startServer = async () => {
     
     app.listen(PORT, () => {
       console.log('========================================');
-      console.log(`✅ PaySwift VTU Server Running`);
+      console.log(`✅ ZeyeeSub VTU Server Running`);
       console.log(`✅ Port: ${PORT}`);
       console.log(`✅ Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`✅ API: http://localhost:${PORT}/api/health`);

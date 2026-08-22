@@ -57,7 +57,7 @@ class PaystackService {
       metadata: {
         ...metadata,
         reference,
-        platform: 'PaySwiftVTU',
+        platform: 'ZeyeeSub',
         timestamp: new Date().toISOString()
       }
     };

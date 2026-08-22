@@ -46,7 +46,7 @@ router.post('/register', validate(registerRules), async (req, res) => {
     try {
       await sendEmail({
         email: user.email,
-        subject: 'Verify Your Email - PaySwift VTU',
+        subject: 'Verify Your Email - ZeyeeSub VTU',
         html: `<p>Click <a href="${verificationUrl}">here</a> to verify your email. Link expires in 24 hours.</p>`
       });
     } catch (emailError) {
@@ -136,7 +136,7 @@ router.post('/forgot-password', validate(forgotPasswordRules), async (req, res) 
     try {
       await sendEmail({
         email: user.email,
-        subject: 'Password Reset - PaySwift VTU',
+        subject: 'Password Reset - ZeyeeSub VTU',
         html: `<p>Click <a href="${resetUrl}">here</a> to reset your password. Link expires in 10 minutes.</p>`
       });
     } catch (emailError) {
@@ -246,7 +246,7 @@ router.post('/resend-verification', protect, async (req, res) => {
     try {
       await sendEmail({
         email: user.email,
-        subject: 'Verify Your Email - PaySwift VTU',
+        subject: 'Verify Your Email - ZeyeeSub VTU',
         html: `<p>Click <a href="${verificationUrl}">here</a> to verify your email. Link expires in 24 hours.</p>`
       });
     } catch (emailError) {

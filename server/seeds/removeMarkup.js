@@ -49,7 +49,7 @@ const rates = {
 
 const removeMarkup = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/payswift_vtu';
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/zeyeesub';
     await mongoose.connect(mongoURI);
     console.log('Connected to MongoDB\n');
 

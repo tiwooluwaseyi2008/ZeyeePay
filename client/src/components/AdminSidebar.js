@@ -69,7 +69,7 @@ const AdminSidebar = ({ activePage }) => {
         </button>
 
         {/* Logo */}
-        <h2 className="admin-logo">PaySwift<span> Admin</span></h2>
+        <h2 className="admin-logo">ZeyeeSub<span> Admin</span></h2>
 
         {/* Menu */}
         <div className="sidebar-menu">

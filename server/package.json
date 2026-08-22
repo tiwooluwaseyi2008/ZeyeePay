@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "payswift-vtu-server",
+  "name": "zeyeesub-server",
   "version": "1.0.0",
-  "description": "PaySwift VTU Backend Server",
+  "description": "ZeyeeSub Backend Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

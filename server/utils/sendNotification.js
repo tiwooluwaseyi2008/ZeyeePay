@@ -6,12 +6,12 @@ const sendNotification = {
   newFundingRequest(fundingRequest, user) {
     // Fire and forget - don't await
     sendEmail({
-      email: process.env.ADMIN_EMAIL || 'admin@payswift.com',
+      email: process.env.ADMIN_EMAIL || 'admin@zeyeesub.com',
       subject: `🔔 New Funding Request - ${fundingRequest.reference}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background-color: #0066cc; padding: 20px; border-radius: 10px 10px 0 0; text-align: center;">
-            <h1 style="color: white; margin: 0;">PaySwift VTU</h1>
+            <h1 style="color: white; margin: 0;">ZeyeeSub VTU</h1>
           </div>
           <div style="background-color: #ffffff; padding: 25px; border: 1px solid #eee;">
             <h2 style="color: #333;">New Wallet Funding Request</h2>
@@ -58,7 +58,7 @@ const sendNotification = {
                 Go to Dashboard
               </a>
             </div>
-            <p style="margin-top: 20px; color: #888; font-size: 13px;">Thank you for using PaySwift VTU!</p>
+            <p style="margin-top: 20px; color: #888; font-size: 13px;">Thank you for using ZeyeeSub VTU!</p>
           </div>
         </div>
       `

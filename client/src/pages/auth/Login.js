@@ -114,7 +114,7 @@ const Login = () => {
       <div className="auth-card">
         {/* Logo */}
         <div className="auth-logo">
-          <h1>PaySwift<span>VTU</span></h1>
+          <h1>ZeyeeSub<span>VTU</span></h1>
           <p>Fast & Secure VTU Platform</p>
         </div>
 
@@ -207,7 +207,7 @@ const Login = () => {
       {/* Features Side */}
       <div className="auth-side">
         <div className="auth-side-content">
-          <h2>Why PaySwift?</h2>
+          <h2>Why ZeyeeSub?</h2>
           <ul>
             <li>📶 Buy Data - MTN, Airtel, Glo, 9mobile</li>
             <li>📱 Instant Airtime Recharge</li>

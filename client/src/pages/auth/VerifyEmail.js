@@ -64,7 +64,7 @@ const VerifyEmail = () => {
         {/* Logo */}
         <div style={{ marginBottom: '25px' }}>
           <h1 style={{ color: '#0066cc', fontSize: '24px', margin: 0 }}>
-            PaySwift<span style={{ color: '#ffd700' }}>VTU</span>
+            ZeyeeSub<span style={{ color: '#ffd700' }}>VTU</span>
           </h1>
         </div>
 

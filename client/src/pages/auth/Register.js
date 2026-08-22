@@ -168,7 +168,7 @@ const Register = () => {
       <div className="auth-card" style={{ maxWidth: '520px' }}>
         {/* Logo */}
         <div className="auth-logo">
-          <h1>PaySwift<span>VTU</span></h1>
+          <h1>ZeyeeSub<span>VTU</span></h1>
           <p>Fast & Secure VTU Platform</p>
         </div>
 
@@ -373,7 +373,7 @@ const Register = () => {
       {/* Benefits Side */}
       <div className="auth-side">
         <div className="auth-side-content">
-          <h2>Why Join PaySwift?</h2>
+          <h2>Why Join ZeyeeSub?</h2>
           <ul>
             <li>📶 Buy Data at best prices</li>
             <li>📱 Instant Airtime delivery</li>

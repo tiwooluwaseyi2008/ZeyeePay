@@ -37,7 +37,7 @@ const services = [
 
 const seedServices = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/payswift_vtu');
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zeyeesub');
     console.log('Connected to MongoDB');
     
     await ServicePrice.deleteMany({});

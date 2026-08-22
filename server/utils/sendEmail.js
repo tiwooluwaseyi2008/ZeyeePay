@@ -19,7 +19,7 @@ const sendEmail = async (options) => {
     });
 
     await transporter.sendMail({
-      from: `PaySwift VTU <${process.env.SMTP_EMAIL}>`,
+      from: `ZeyeeSub VTU <${process.env.SMTP_EMAIL}>`,
       to: options.email,
       subject: options.subject,
       html: options.html
