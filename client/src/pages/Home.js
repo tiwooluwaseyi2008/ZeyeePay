@@ -1,7 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaWhatsapp, FaMobileAlt, FaTv, FaBolt, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaBolt, FaCheckCircle, FaMobileAlt, FaShieldAlt, FaSignal, FaTv, FaWhatsapp } from 'react-icons/fa';
 import api from '../api/axios';
+import './Home.css';
+
+const networks = [
+  { name: 'MTN', className: 'network-mtn', detail: 'Reliable bundles, every day' },
+  { name: 'Airtel', className: 'network-airtel', detail: 'Stay connected for less' },
+  { name: 'Glo', className: 'network-glo', detail: 'More data. More value.' },
+];
+
+const services = [
+  { icon: FaMobileAlt, title: 'Data bundles', text: 'Affordable plans for streaming, work, school and everything in between.' },
+  { icon: FaSignal, title: 'Airtime recharge', text: 'Top up any Nigerian line in seconds, with instant delivery.' },
+  { icon: FaTv, title: 'TV subscriptions', text: 'Keep your DStv, GOtv and Startimes entertainment active.' },
+  { icon: FaBolt, title: 'Electricity bills', text: 'Pay your power bill without queues or unnecessary stress.' },
+];
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,383 +24,42 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('token');
-      
-      if (!token) {
-        setIsLoggedIn(false);
-        setChecking(false);
-        return;
-      }
-
-      try {
-        await api.get('/api/auth/me');
-        setIsLoggedIn(true);
-      } catch {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setIsLoggedIn(false);
-      } finally {
-        setChecking(false);
-      }
+      if (!token) { setChecking(false); return; }
+      try { await api.get('/api/auth/me'); setIsLoggedIn(true); }
+      catch { localStorage.removeItem('token'); localStorage.removeItem('user'); }
+      finally { setChecking(false); }
     };
-
     checkAuth();
   }, []);
 
   return (
-    <div>
-      {/* Navigation */}
-      <nav style={styles.nav}>
-        <div style={styles.navInner}>
-          <h2 style={styles.logo}>PaySwift<span style={{ color: '#ffd700' }}>VTU</span></h2>
-          <div style={styles.navLinks}>
-            {!checking && (
-              isLoggedIn ? (
-                <Link to="/dashboard" style={styles.registerBtn}>Dashboard</Link>
-              ) : (
-                <>
-                  <Link to="/login" style={styles.navLink}>Login</Link>
-                  <Link to="/register" style={styles.registerBtn}>Get Started</Link>
-                </>
-              )
-            )}
-          </div>
+    <main className="home-page">
+      <div className="home-orb home-orb-one" /><div className="home-orb home-orb-two" />
+      <nav className="home-nav container-wide">
+        <Link to="/" className="brand-mark"><span className="brand-dot" />PaySwift<span>VTU</span></Link>
+        <div className="nav-actions">
+          {!checking && (isLoggedIn ? <Link to="/dashboard" className="button button-primary">Open dashboard <FaArrowRight /></Link> : <><Link to="/login" className="nav-login">Login</Link><Link to="/register" className="button button-primary">Get started <FaArrowRight /></Link></>)}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section style={styles.hero}>
-        <div style={styles.heroContent}>
-          <h1 style={styles.heroTitle}>
-            Buy Airtime, Data, Pay Bills <span style={{ color: '#ffd700' }}>Instantly</span>
-          </h1>
-          <p style={styles.heroText}>
-            Fast and reliable VTU platform for all your airtime, data, TV subscription and electricity bill payments in Nigeria.
-          </p>
-          <div style={styles.heroBtns}>
-            <Link to="/register" style={styles.ctaBtn}>
-              Get Started Free <FaArrowRight />
-            </Link>
-            <a 
-              href="https://wa.me/2348105002814" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={styles.whatsappBtn}
-            >
-              <FaWhatsapp /> Chat on WhatsApp
-            </a>
-          </div>
+      <section className="hero container-wide">
+        <div className="hero-copy">
+          <div className="eyebrow"><span className="eyebrow-pulse" /> Nigeria's simpler VTU platform</div>
+          <h1>Power your day.<br /><em>Stay connected.</em></h1>
+          <p>Buy data, airtime and pay bills across Nigeria with a wallet that works as fast as you do.</p>
+          <div className="hero-actions"><Link to={isLoggedIn ? '/dashboard/data' : '/register'} className="button button-accent">Buy data now <FaArrowRight /></Link><a href="https://wa.me/2348105002814" target="_blank" rel="noopener noreferrer" className="button button-quiet"><FaWhatsapp /> Talk to support</a></div>
+          <div className="trust-row"><span><FaCheckCircle /> Instant delivery</span><span><FaShieldAlt /> Secure payments</span><span><FaCheckCircle /> 24/7 access</span></div>
         </div>
+        <div className="hero-card-wrap"><div className="hero-glow" /><div className="wallet-card"><div className="wallet-top"><span>PaySwift wallet</span><span className="live-pill">● Live</span></div><p className="wallet-label">Available balance</p><strong className="wallet-amount">₦24,850<span>.00</span></strong><div className="wallet-bottom"><span>•••• 4028</span><span>Ready to use</span></div></div><div className="floating-transaction"><span className="transaction-icon"><FaCheckCircle /></span><span><b>Data delivered</b><small>MTN · 2GB plan</small></span><strong>₦700</strong></div></div>
       </section>
 
-      {/* Services Section */}
-      <section style={styles.servicesSection}>
-        <h2 style={styles.sectionTitle}>Our Services</h2>
-        <p style={styles.sectionSubtitle}>Everything you need in one place</p>
-        
-        <div style={styles.servicesGrid}>
-          <div style={styles.serviceCard}>
-            <div style={styles.serviceIcon}><FaMobileAlt /></div>
-            <h3>Buy Data</h3>
-            <p>MTN, Airtel, Glo & 9mobile data bundles at affordable prices</p>
-          </div>
-          <div style={styles.serviceCard}>
-            <div style={styles.serviceIcon}><FaMobileAlt /></div>
-            <h3>Buy Airtime</h3>
-            <p>Instant airtime recharge for all Nigerian networks</p>
-          </div>
-          <div style={styles.serviceCard}>
-            <div style={styles.serviceIcon}><FaTv /></div>
-            <h3>TV Subscription</h3>
-            <p>Renew your DStv, GOtv & Startimes subscription easily</p>
-          </div>
-          <div style={styles.serviceCard}>
-            <div style={styles.serviceIcon}><FaBolt /></div>
-            <h3>Electricity Bills</h3>
-            <p>Pay electricity bills for all distribution companies</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section style={styles.pricingSection}>
-        <h2 style={styles.sectionTitle}>Popular Data Plans</h2>
-        <p style={styles.sectionSubtitle}>Affordable plans for all networks</p>
-        
-        <div style={styles.pricingGrid}>
-          <div style={styles.pricingCard}>
-            <div style={styles.networkBadge}>MTN</div>
-            <h3>1.5GB</h3>
-            <p style={styles.validity}>30 Days</p>
-            <p style={styles.price}>₦500</p>
-          </div>
-          <div style={styles.pricingCard}>
-            <div style={{ ...styles.networkBadge, backgroundColor: '#dc3545' }}>Airtel</div>
-            <h3>1.5GB</h3>
-            <p style={styles.validity}>30 Days</p>
-            <p style={styles.price}>₦500</p>
-          </div>
-          <div style={styles.pricingCard}>
-            <div style={{ ...styles.networkBadge, backgroundColor: '#28a745' }}>Glo</div>
-            <h3>1.35GB</h3>
-            <p style={styles.validity}>14 Days</p>
-            <p style={styles.price}>₦500</p>
-          </div>
-          <div style={styles.pricingCard}>
-            <div style={{ ...styles.networkBadge, backgroundColor: '#6f42c1' }}>9mobile</div>
-            <h3>1GB</h3>
-            <p style={styles.validity}>30 Days</p>
-            <p style={styles.price}>₦500</p>
-          </div>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '30px' }}>
-          <Link to="/register" style={styles.ctaBtn}>
-            View All Plans <FaArrowRight />
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer style={styles.footer}>
-        <div style={styles.footerInner}>
-          <div>
-            <h3 style={{ color: 'white' }}>PaySwift<span style={{ color: '#ffd700' }}>VTU</span></h3>
-            <p style={{ color: '#ccc', marginTop: '10px' }}>
-              Your trusted VTU platform for airtime, data, TV subscription & electricity bills.
-            </p>
-          </div>
-          <div>
-            <h4 style={{ color: 'white', marginBottom: '15px' }}>Quick Links</h4>
-            <Link to="/login" style={styles.footerLink}>Login</Link><br />
-            <Link to="/register" style={styles.footerLink}>Register</Link><br />
-            <a href="https://wa.me/2348105002814" style={styles.footerLink}>Contact Us</a>
-          </div>
-          <div>
-            <h4 style={{ color: 'white', marginBottom: '15px' }}>Contact</h4>
-            <p style={{ color: '#ccc', margin: '5px 0' }}>
-              <FaWhatsapp /> WhatsApp: 08105002814
-            </p>
-            <p style={{ color: '#ccc', margin: '5px 0' }}>Available 24/7</p>
-          </div>
-        </div>
-        <div style={{ textAlign: 'center', marginTop: '30px', color: '#999', fontSize: '14px' }}>
-          © 2025 PaySwift VTU. All rights reserved.
-        </div>
-      </footer>
-
-      {/* WhatsApp Float Button */}
-      <a 
-        href="https://wa.me/2348105002814" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        style={{
-          position: 'fixed',
-          bottom: '30px',
-          right: '30px',
-          width: '60px',
-          height: '60px',
-          backgroundColor: '#25D366',
-          color: 'white',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '30px',
-          boxShadow: '0 4px 12px rgba(37, 211, 102, 0.4)',
-          zIndex: 1000,
-          textDecoration: 'none'
-        }}
-      >
-        <FaWhatsapp />
-      </a>
-    </div>
+      <section className="network-strip container-wide"><p>One wallet. Every network.</p><div className="network-list">{networks.map((network) => <div className={`network-chip ${network.className}`} key={network.name}><b>{network.name}</b><span>{network.detail}</span></div>)}</div></section>
+      <section className="services-section container-wide"><div className="section-heading"><div><span className="eyebrow">Everything in one place</span><h2>Move through life<br /><em>without interruptions.</em></h2></div><p>From your next data bundle to your monthly power bill, take care of the essentials in a few taps.</p></div><div className="service-grid">{services.map(({ icon: Icon, title, text }) => <article className="service-card" key={title}><div className="service-icon"><Icon /></div><h3>{title}</h3><p>{text}</p><Link to="/register">Explore <FaArrowRight /></Link></article>)}</div></section>
+      <section className="home-cta container-wide"><div><span className="eyebrow">Ready when you are</span><h2>Good things happen<br /><em>when you stay connected.</em></h2></div><Link to="/register" className="button button-accent">Create free account <FaArrowRight /></Link></section>
+      <footer className="home-footer container-wide"><Link to="/" className="brand-mark"><span className="brand-dot" />PaySwift<span>VTU</span></Link><p>Simple, reliable payments for everyday Nigeria.</p><span>© 2026 PaySwift VTU</span></footer>
+      <a className="floating-whatsapp" href="https://wa.me/2348105002814" target="_blank" rel="noopener noreferrer" aria-label="Chat with PaySwift support on WhatsApp"><FaWhatsapp /></a>
+    </main>
   );
-};
-
-const styles = {
-  nav: {
-    backgroundColor: 'white',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-    position: 'sticky',
-    top: 0,
-    zIndex: 100
-  },
-  navInner: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '15px 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  logo: {
-    margin: 0,
-    color: '#0066cc',
-    fontSize: '24px',
-    fontWeight: '800'
-  },
-  navLinks: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '15px'
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#333',
-    fontWeight: '500'
-  },
-  registerBtn: {
-    textDecoration: 'none',
-    backgroundColor: '#0066cc',
-    color: 'white',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    fontWeight: '600'
-  },
-  hero: {
-    background: 'linear-gradient(135deg, #0066cc, #004d99)',
-    color: 'white',
-    padding: '80px 20px',
-    textAlign: 'center'
-  },
-  heroContent: {
-    maxWidth: '700px',
-    margin: '0 auto'
-  },
-  heroTitle: {
-    fontSize: '42px',
-    fontWeight: '800',
-    marginBottom: '20px',
-    lineHeight: '1.2'
-  },
-  heroText: {
-    fontSize: '18px',
-    marginBottom: '30px',
-    opacity: '0.95',
-    lineHeight: '1.6'
-  },
-  heroBtns: {
-    display: 'flex',
-    gap: '15px',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
-  },
-  ctaBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    backgroundColor: '#ffd700',
-    color: '#333',
-    padding: '15px 30px',
-    borderRadius: '8px',
-    textDecoration: 'none',
-    fontWeight: '700',
-    fontSize: '16px'
-  },
-  whatsappBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    backgroundColor: '#25D366',
-    color: 'white',
-    padding: '15px 30px',
-    borderRadius: '8px',
-    textDecoration: 'none',
-    fontWeight: '600',
-    fontSize: '16px'
-  },
-  servicesSection: {
-    padding: '80px 20px',
-    backgroundColor: '#f8f9fa'
-  },
-  sectionTitle: {
-    textAlign: 'center',
-    fontSize: '32px',
-    color: '#333',
-    marginBottom: '10px'
-  },
-  sectionSubtitle: {
-    textAlign: 'center',
-    color: '#666',
-    marginBottom: '50px',
-    fontSize: '18px'
-  },
-  servicesGrid: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
-    gap: '25px'
-  },
-  serviceCard: {
-    backgroundColor: 'white',
-    padding: '35px 25px',
-    borderRadius: '12px',
-    textAlign: 'center',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.08)'
-  },
-  serviceIcon: {
-    fontSize: '40px',
-    color: '#0066cc',
-    marginBottom: '15px'
-  },
-  pricingSection: {
-    padding: '80px 20px',
-    backgroundColor: 'white'
-  },
-  pricingGrid: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: '20px'
-  },
-  pricingCard: {
-    backgroundColor: '#f8f9fa',
-    padding: '30px',
-    borderRadius: '12px',
-    textAlign: 'center',
-    border: '2px solid #eee'
-  },
-  networkBadge: {
-    display: 'inline-block',
-    backgroundColor: '#ffc107',
-    color: '#333',
-    padding: '5px 15px',
-    borderRadius: '20px',
-    fontWeight: '700',
-    marginBottom: '15px',
-    fontSize: '14px'
-  },
-  validity: {
-    color: '#666',
-    fontSize: '14px',
-    margin: '5px 0'
-  },
-  price: {
-    fontSize: '28px',
-    fontWeight: '700',
-    color: '#0066cc',
-    margin: '10px 0 0 0'
-  },
-  footer: {
-    backgroundColor: '#1a1a2e',
-    padding: '50px 20px 20px',
-    marginTop: '0'
-  },
-  footerInner: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '30px'
-  },
-  footerLink: {
-    color: '#ccc',
-    textDecoration: 'none',
-    display: 'inline-block',
-    margin: '5px 0'
-  }
 };
 
 export default Home;
